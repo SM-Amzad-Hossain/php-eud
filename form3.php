@@ -1,5 +1,7 @@
 <?php
-include_once "form3-function.php"
+include_once "form3-function.php";
+$fruits = ['mango', 'orange', 'banana', 'lemon', 'pineapple', 'watermelon'];
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +41,15 @@ include_once "form3-function.php"
             <div class="column culumn-offset-20">
                 <h2> Select Dropdowns</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla reiciendis quam maiores sapiente mollitia sit voluptatum asperiores in, facilis, aperiam consequatur. Ratione accusamus vel obcaecati hic nam, adipisci excepturi distinctio provident quia minima culpa numquam qui autem corporis itaque atque animi molestias eius expedita similique inventore! Iste qui similique magnam?</p>
+
+                <p>
+                    <?php
+                    if (isset($_POST['fruits']) && $_POST['fruits'] != '') {
+                        printf("You have selected: %s", filter_input(INPUT_POST, 'fruits', FILTER_SANITIZE_FULL_SPECIAL_CHARS),);
+                    }
+                    ?>
+                </p>
+
             </div>
         </div>
         <div class="row">
@@ -47,11 +58,7 @@ include_once "form3-function.php"
                     <label for="fruits">Select Some Fruits</label>
                     <select name="fruits" id="fruits">
                         <option value="" disabled selected>Select Some Fruits</option>
-                        <option value="mango">Mango</option>
-                        <option value="orange">Orange</option>
-                        <option value="mango">Mango</option>
-                        <option value="mango">Mango</option>
-                        <option value="mango">Mango</option>
+                        <?php displayOption($fruits); ?>
                     </select>
 
                     <button type="submit">Submit</button>
